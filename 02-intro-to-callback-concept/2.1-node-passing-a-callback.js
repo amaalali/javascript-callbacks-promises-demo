@@ -8,11 +8,15 @@
   cause some side effects - in this console.log-ging.
 */
 
-ARandomAsyncFunction((event) => {
+// This is the callback that will be passed to the
+// async function
+const ourAsyncHandler = (event) => {
   console.log("First")
   event() // (2) remember event is a function
   console.log("Third")
-})
+}
+
+ARandomAsyncFunction(ourAsyncHandler)
 
 
 /*

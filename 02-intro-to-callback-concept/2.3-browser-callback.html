@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Http Request with Callbacks</title>
+    <script>
+      /*
+        Note: The code below represents code that you consume.
+        You don't own it and cannot make changes to it.
+        This function takes a url and calls the callback when the
+        request is resolved
+      */
+      function makeRequest(url, callback) {
+        const Http = new XMLHttpRequest();
+        Http.open("GET", url);
+        Http.send();
+        Http.onreadystatechange = () => callback(Http)
+      }
+    </script>
+  </head>
+  <body>
+    <h1 class="my-title">Http Request with Callbacks</h1>
+    <p>The response from our api request is: </p>
+    <pre>
+      <code id="our-root"></code>
+    </pre>
+    <script>
+
+      // This is the callback that will be passed to the
+      // async function
+      const handleResponse = (response) => {
+        const person = response.responseText
+        console.log(person)
+        document.getElementById("our-root").innerText= person
+      }
+
+      // This is the async call
+      makeRequest('https://swapi.co/api/planets/1', handleResponse)
+
+
+      console.log(
+        "This got fired after the reqest was sent.",
+        "But where did this show up in the log compared to the",
+        "log for the person that was returned with the response?"
+      )
+
+    </script>
+  </body>
+</html>
