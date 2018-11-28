@@ -1,21 +1,23 @@
 /*
-  Description: This example illustrates how functions are invoked in
-  and demonstrate the async nature of that invocation, which can be
-  counter-intuitive when first encountered. 
-
-  The main 
+  (1)
+  Description: In this demo we are making an http request and
+  printing the results. Here, the https module is being used
+  to make the requests. This method takes a callback that takes
+  one param - the response data.
 */
 
 
-// This is how we import modules in node: https://nodejs.org/api/modules.html#modules_require
+// This is how modules are imported in node
 const https = require('https');
 
 
+// This is settup - you can skip to the first console.log
 const handleReqestData = (resp) => {
   /*
-    It isn't important that you understand this function at this point in the course,
-    the main feature that this is demonstrating is that this function has console.logs
-    that do not get "triggered" till the callback is executed.
+    It isn't important that you understand this function at this 
+    point in the course, the main feature that this is demonstrating 
+    is that this function has console.logs that do not get "triggered"
+     till the callback is executed.
   */
 
   let collectedData = "";
@@ -36,10 +38,12 @@ const handleReqestData = (resp) => {
 }
 
 
+/* 
+  We're interested in this bit:
+  \/   \/   \/   \/   \/   \/
+*/
+
 console.log("(1) Before request is fired");
-
-const getPersonName = (person) => person.name.toUpperCase()
-
 
 /* 
   https.get is function that takes a callback as its second parameter.
@@ -49,7 +53,6 @@ https.get("https://swapi.co/api/planets/1/", handleReqestData)
 
 
 /* 
-  this console.log is tiggered before the http request is returned, so if we
-  attempted to assign the result to 
+  this console.log can be tiggered before the http request is returned
 */
 console.log("(3) This is after the request was sent off")
