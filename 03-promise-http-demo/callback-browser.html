@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Http Promise</title>
+  </head>
+  <body>
+    <h1 class="my-title">Http Promise</h1>
+    <p>People</p>
+    <ul id="our-root"></ul>
+    
+    <script>
+      // insert
+      const rootNode = document.getElementById("our-root")
+
+      // add to page      
+      function insertNewPerson(person) {
+        const newElem = document.createElement("li")
+        newElem.innerHTML = person.name;
+        rootNode.appendChild(newElem)
+      }
+
+      const ourPromise = fetch('https://swapi.co/api/people/')
+
+      const x1 = ourPromise.then(response => {
+        return response.json()
+      })
+
+      // notice that x1 is a promise 
+      x1
+        .then(responseJson => responseJson.results)
+        .then(results => results.forEach(insertNewPerson))
+        .catch(() => console.log("oops"))
+    </script>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Http Promise</title>
+  </head>
+  <body>
+    <h1 class="my-title">Http Promise</h1>
+    <p>Hi</p>
+    <div id="our-root"></div>
+    <script>
+      // insert
+      const rootNode = document.getElementById("our-root")
+
+      // get data
+      fetch('https://swapi.co/api/planets/1/')
+        .then(response => response.json())
+        .then(json => console.log(json))
+
+    </script>
+  </body>
+</html>

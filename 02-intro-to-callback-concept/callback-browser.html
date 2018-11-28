@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Http Request with Callbacks</title>
+    <script>
+      // This represents code we don't own
+      // This function takes a url and calls the callback when the request is solved
+      function makeRequest(url, callback) {
+        const Http = new XMLHttpRequest();
+        Http.open("GET", url);
+        Http.send();
+        Http.onreadystatechange = () => callback(Http)
+      }
+    </script>
+  </head>
+  <body>
+    <h1 class="my-title">Http Request with Callbacks</h1>
+    <p>Hi</p>
+    <div id="our-root"></div>
+    <script>
+      // insert
+      const rootNode = document.getElementById("our-root")
+
+      // add to page      
+      makeRequest('https://swapi.co/api/people/1', (response)=>{
+        console.log(person.responseText)
+        const person = response.responseText
+        
+      })
+
+    </script>
+  </body>q
+</html>
